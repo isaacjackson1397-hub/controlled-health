@@ -6,84 +6,125 @@
     <title>Controlled Health | Coming Soon</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-    <body class="bg-slate-50 flex items-center justify-center min-h-screen p-6">
+<body class="bg-slate-50 min-h-screen relative font-sans overflow-x-hidden">
+
+    <button onclick="toggleSidebar()" class="fixed top-6 left-6 z-50 p-2 bg-white rounded-lg shadow-md hover:bg-slate-100 transition-all border border-slate-200">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+    </button>
+
+    <div id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-white shadow-2xl z-50 transform -translate-x-full transition-transform duration-300 ease-in-out border-r border-slate-100">
+        <div class="p-8">
+            <h2 class="text-xl font-bold text-blue-600 mb-8">Controlled Health</h2>
+            <nav class="space-y-4">
+                <a href="#about" class="block py-2 text-slate-600 hover:text-blue-600 font-medium transition-colors">About</a>
+                </nav>
+        </div>
+        <button onclick="toggleSidebar()" class="absolute top-6 right-4 text-slate-400 hover:text-slate-600">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+
+    <div id="overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-900/20 backdrop-blur-sm z-40 hidden transition-opacity"></div>
+
+    <main class="flex items-center justify-center min-h-screen p-6">
         <div class="max-w-md w-full text-center">
-            <h2 class="text-blue-600 font-bold text-sm uppercase mb-4">Controlled Health</h2>
+            <h2 class="text-blue-600 font-bold text-sm uppercase mb-4 tracking-widest">Controlled Health</h2>
             <h1 class="text-3xl font-bold text-slate-900 mb-6">Join the Waitlist</h1>
-    
-                <form id="waitlist-form" class="max-w-md w-full text-left bg-white p-8 rounded-xl shadow-lg border border-slate-100 space-y-4">
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-1">I am a...</label>
-                <select name="role" id="role" onchange="toggleFields()" class="w-full px-4 py-2 rounded-lg border border-slate-300 outline-none">
-                    <option value="patient">Patient</option>
-                    <option value="physician">Physician / Healthcare Provider</option>
-                </select>
-            </div>
-        
-            <input type="text" name="name" required placeholder="Full Name" class="w-full px-4 py-2 rounded-lg border border-slate-300 outline-none">
-            <input type="email" name="email" required placeholder="Email Address" class="w-full px-4 py-2 rounded-lg border border-slate-300 outline-none">
-        
-            <div id="physician-fields" style="display:none;" class="space-y-4 border-t border-slate-100 pt-4 mt-4">
-                <input type="tel" name="phone" placeholder="Phone Number (Optional)" class="w-full px-4 py-2 rounded-lg border border-slate-300 outline-none">
-                
+
+            <form id="waitlist-form" class="space-y-4 text-left bg-white p-8 rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100">
                 <div>
-                    <label class="block text-sm font-semibold text-slate-700 mb-1">Are you a Primary Care Provider?</label>
-                    <select name="pcp" id="pcp-select" onchange="toggleSpecialty()" class="w-full px-4 py-2 rounded-lg border border-slate-300">
-                        <option value="" disabled selected hidden>Select an option...</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1">I am a...</label>
+                    <select name="role" id="role" onchange="toggleFields()" class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none bg-slate-50">
+                        <option value="patient">Patient</option>
+                        <option value="physician">Physician / Healthcare Provider</option>
                     </select>
                 </div>
-        
-                <div id="specialty-box" style="display:none;">
-                    <label class="block text-sm font-semibold text-slate-700 mb-1">Practice Type / Specialty</label>
-                    <input type="text" name="specialty" placeholder="e.g. Cardiology, Orthopedics" class="w-full px-4 py-2 rounded-lg border border-slate-300 outline-none">
+
+                <input type="text" name="name" required placeholder="Full Name" class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none">
+                <input type="email" name="email" required placeholder="Email Address" class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none">
+
+                <div id="physician-fields" style="display:none;" class="space-y-4 border-t border-slate-100 pt-4 mt-4">
+                    <input type="tel" name="phone" placeholder="Phone Number" class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none">
+                    <div>
+                        <label class="block text-sm font-semibold text-slate-700 mb-1">Are you a Primary Care Provider?</label>
+                        <select name="pcp" id="pcp-select" onchange="toggleSpecialty()" class="w-full px-4 py-2 rounded-lg border border-slate-300 bg-slate-50">
+                            <option value="" disabled selected hidden>Select an option...</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div id="specialty-box" style="display:none;">
+                        <input type="text" name="specialty" placeholder="Practice Type / Specialty" class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
                 </div>
-            </div>
-        
-            <button type="submit" id="submit-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition-all shadow-lg shadow-blue-100">
-                Join Waitlist
-            </button>
-        </form>
-        
-        <script>
-            function toggleFields() {
-                const isPhysician = document.getElementById('role').value === 'physician';
-                document.getElementById('physician-fields').style.display = isPhysician ? 'block' : 'none';
-                // Reset specialty box if switching back to patient
-                if (!isPhysician) toggleSpecialty(); 
+
+                <button type="submit" id="submit-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-blue-200">
+                    Join Waitlist
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // SIDEBAR LOGIC
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const isOpen = sidebar.classList.contains('translate-x-0');
+            
+            if (isOpen) {
+                sidebar.classList.add('-translate-x-full');
+                sidebar.classList.remove('translate-x-0');
+                overlay.classList.add('hidden');
+            } else {
+                sidebar.classList.remove('-translate-x-full');
+                sidebar.classList.add('translate-x-0');
+                overlay.classList.remove('hidden');
             }
-        
-            function toggleSpecialty() {
-                const pcpValue = document.getElementById('pcp-select').value;
-                const specialtyBox = document.getElementById('specialty-box');
-                // Show only if the answer is specifically "No"
-                specialtyBox.style.display = (pcpValue === 'No') ? 'block' : 'none';
-            }
-        
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwMS3FGLphY4yQQWURGWvU0QHxI0Yr_u85uAuh6EO0ABrSw8TVW8VgCHR2A99ZAzwC2eA/exec'; // KEEP YOUR EXISTING URL HERE
-        
-            const form = document.getElementById('waitlist-form');
-            form.addEventListener('submit', e => {
-                e.preventDefault();
-                const btn = document.getElementById('submit-btn');
-                btn.disabled = true;
-                btn.innerText = 'Sending...';
-                
-                fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                    .then(response => {
-                        alert("Success! You've been added to the waitlist.");
-                        form.reset();
-                        toggleFields();
-                        btn.disabled = false;
-                        btn.innerText = 'Join Waitlist';
-                    })
-                    .catch(error => {
-                        console.error('Error!', error.message);
-                        btn.disabled = false;
-                        btn.innerText = 'Join Waitlist';
-                    });
-            });
-        </script>
-    </body>
+        }
+
+        // FORM LOGIC
+        function toggleFields() {
+            const isPhysician = document.getElementById('role').value === 'physician';
+            document.getElementById('physician-fields').style.display = isPhysician ? 'block' : 'none';
+            toggleSpecialty(); 
+        }
+
+        function toggleSpecialty() {
+            const pcpSelect = document.getElementById('pcp-select');
+            const specialtyBox = document.getElementById('specialty-box');
+            const isPhysician = document.getElementById('role').value === 'physician';
+            specialtyBox.style.display = (isPhysician && pcpSelect.value === 'No') ? 'block' : 'none';
+        }
+
+        // --- PASTE YOUR URL BELOW ---
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwMS3FGLphY4yQQWURGWvU0QHxI0Yr_u85uAuh6EO0ABrSw8TVW8VgCHR2A99ZAzwC2eA/exec'; 
+
+        const form = document.getElementById('waitlist-form');
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            btn.disabled = true;
+            btn.innerText = 'Sending...';
+            
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    alert("Success! You've been added to the waitlist.");
+                    form.reset();
+                    toggleFields();
+                    btn.disabled = false;
+                    btn.innerText = 'Join Waitlist';
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    btn.disabled = false;
+                    btn.innerText = 'Join Waitlist';
+                });
+        });
+    </script>
+</body>
 </html>
