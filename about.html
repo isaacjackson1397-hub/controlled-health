@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Controlled Health</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif !important; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen relative overflow-x-hidden">
+
+    <button onclick="toggleSidebar()" class="fixed top-6 left-6 z-50 p-2 bg-white rounded-lg shadow-md hover:bg-slate-100 transition-all border border-slate-200">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+    </button>
+
+    <div id="sidebar" class="fixed top-0 left-0 h-full w-64 bg-white shadow-2xl z-50 transform -translate-x-full transition-transform duration-300 ease-in-out border-r border-slate-100 p-8">
+        <h2 class="text-2xl font-bold text-blue-900 mb-8">Controlled Health</h2>
+          <nav class="space-y-2">
+              <a href="index.html" class="group flex items-center py-2 text-slate-500 hover:text-blue-900 transition-colors">
+                  <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-blue-900 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                  </svg>
+                  Home
+              </a>
+              
+              <a href="index.html" class="block py-2 pl-11 text-slate-400 hover:text-blue-900 ml-2.5">
+                  Join Waitlist
+              </a>
+          
+              <a href="about.html" class="group flex items-center py-2 mt-4 text-blue-900 font-bold border-l-4 border-blue-900 pl-4">
+                  <svg class="w-5 h-5 mr-3 text-blue-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                  </svg>
+                  About
+              </a>
+          </nav>
+        <button onclick="toggleSidebar()" class="absolute top-6 right-4 text-slate-400">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+    </div>
+
+    <div id="overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-900/20 backdrop-blur-sm z-40 hidden"></div>
+
+    <main class="flex flex-col items-center pt-24 pb-20 px-6">
+        <div class="max-w-3xl w-full text-center">
+            <h1 class="text-5xl md:text-7xl font-black text-blue-900 mb-12 tracking-tight uppercase">
+                Controlled Health
+            </h1>
+
+            <div class="text-left bg-white p-10 md:p-16 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100">
+                <h2 class="text-3xl font-bold text-slate-900 mb-6">Our Mission</h2>
+                <p class="text-xl text-slate-700 leading-relaxed mb-8 italic">
+                    “We empower physicians and patients to reclaim their healthcare relationship through a transparent, subscription-based marketplace.”
+                </p>
+                <p class="text-lg text-slate-600 leading-relaxed">
+                    [Insert your About content here. You can explain how the platform works and the benefits for both providers and patients.]
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const isOpen = sidebar.classList.contains('translate-x-0');
+            if (isOpen) {
+                sidebar.classList.add('-translate-x-full');
+                sidebar.classList.remove('translate-x-0');
+                overlay.classList.add('hidden');
+            } else {
+                sidebar.classList.remove('-translate-x-full');
+                sidebar.classList.add('translate-x-0');
+                overlay.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
