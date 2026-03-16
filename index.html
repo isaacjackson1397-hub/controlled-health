@@ -53,13 +53,35 @@
     <div id="overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-900/20 backdrop-blur-sm z-40 hidden transition-opacity"></div>
 
     <main class="flex flex-col items-center justify-center min-h-screen p-6 py-20">
-       <div class="max-w-3xl w-full text-center">
+       <div class="max-w-4xl w-full text-center">
         
         <h1 class="text-3xl md:text-5xl font-bold text-blue-900 mb-6 tracking-tight">
-            The Infrastructure for Independent Medicine
+            Controlled-Health
         </h1>
+
+        <div class="mb-16">
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed mb-10">
+                Welcome to Controlled-Health. We are a two-sided marketplace designed to remove the insurance middleman, realign financial incentives, and restore the direct relationship between physicians and patients.
+            </p>
+            
+            <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto text-left">
+                <a href="physicians.html" class="block bg-white p-8 rounded-3xl border border-slate-200 shadow-md hover:shadow-xl transition-all group">
+                    <h3 class="text-2xl font-bold text-blue-900 mb-3 group-hover:text-blue-600 transition-colors">I am a Physician &rarr;</h3>
+                    <p class="text-slate-600">
+                        Discover how our "Business-in-a-Box" platform provides the operational and analytical infrastructure to help you seamlessly transition to a sustainable, independent practice.
+                    </p>
+                </a>
+                
+                <a href="physicians.html" class="block bg-white p-8 rounded-3xl border border-slate-200 shadow-md hover:shadow-xl transition-all group">
+                    <h3 class="text-2xl font-bold text-blue-900 mb-3 group-hover:text-blue-600 transition-colors">I am a Patient &rarr;</h3>
+                    <p class="text-slate-600">
+                        Learn how to expand your preventative care options, manage costs transparently, and find independent providers who have the time to focus entirely on your health.
+                    </p>
+                </a>
+            </div>
+        </div>
         
-        <div class="bg-white rounded-3xl border border-slate-200 shadow-xl p-8 md:p-12 mb-10 text-left">
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-xl p-8 md:p-12 mb-10 text-left max-w-3xl mx-auto">
             <h2 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2">The Problem</h2>
             <p class="text-lg text-slate-600 mb-8 leading-relaxed">
                 The current healthcare system prioritizes volume over value, leading to unprecedented physician burnout and administrative bloat. For patients, this means expensive, long waits for rushed 15-minute visits with the physician. For physicians, this means working in a chaotic and rushed environment, not having time to know about a patient's lifestyle to make a real impact on improving the long-term health of individuals. In modern healthcare, administration is one culprit for increasing expenses. Today, there is roughly one physician for every ten administrators, and we want to change that.
@@ -90,6 +112,7 @@
                 </a>
             </div>
         </div>
+       </div>
     </main>
 
     <script>
